@@ -4,8 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link id="favicon" rel="icon" href="https://fi.somethingawful.com/images/smilies/smile.gif">
     <script src="https://cdn.jsdelivr.net/npm/hiccupfx@1.1.1/hiccupfx-min.js"></script>
     <title>CursedCTF</title>
+    <script>
+        const title = "CursedCTF";
+        const sponsor = "Sponsored by Google!";
+        const favicon = "https://www.google.com/favicon.ico";
+        const favismile = "https://fi.somethingawful.com/images/smilies/biggrin.gif";
+        let interval;
+        window.addEventListener("blur", function() {
+            interval = setInterval(function () {
+                if (document.title === title) {
+                    document.title = sponsor;
+                    document.getElementById("favicon").href = favicon;
+                } else {
+                    document.title = title;
+                    document.getElementById("favicon").href = favismile;
+                }
+            }, 200); // chromium doesn't let you change this. now firefox...
+        });
+        window.addEventListener("focus", function () {
+            clearInterval(interval);
+            interval = null;
+            document.title = title;
+            window.location.reload(true); // why not (edit: this broke firefox, i'm keeping it)
+        });
+    </script>
 </head>
 <body class="flex content-center bg-yellow-300 border-t-2 border-white">
 <section class="flex-column content-center justify-center">
@@ -34,13 +59,14 @@
 </section>
 <main class="" style="width: 110vw;">
     <section class="flex" style="margin: 0 -40px 0 -10px;">
-        <img src="assets/sponsorship.png" class="object-full" style="width: 850px; height: 150px;" alt="Your company goes here.">
+        <img src="assets/Google_2011_logo.png" class="object-full" style="width: 850px; height: 150px;" alt="Your company goes here.">
         <img src="assets/sponsorship.png" class="object-full" style="width: 850px; height: 150px;" alt="Your company goes here.">
     </section>
     <section style="font-family: Comic Sans MS; width: 100vw;" class="flex-row content-center justify-center text-center bg-black text-white">
         <h1 class="text-sky-400 text-6xl p-4">Cursed CTF</h1>
         <img id="logo" src="assets/cursedctf-logo.png" style="margin: 0 auto" width="500px" alt="Cursed CTF" onmouseover="document.getElementById('logo').src='assets/cursedctf-2023.png';" onmouseout="document.getElementById('logo').src='assets/cursedctf-logo.png';">
         <p class="lowercase p-10">Coming April 1st. Yes, we're serious.</p>
+        <span class="fixed z-50 top-1/2 left-0 w-screen text-red-600 text-6xl"><marquee>Infra sponsored by goo.gle/ctfsponsorship!</marquee></span>
         <section class="flex">
             <img src="assets/broken-image-lmao.png" style="font-family: Verdana; margin: 0 auto" width="500px" height="250px" alt="">
             <img src="assets/broken-image-lmao.png" style="font-family: Verdana; margin: 0 auto" width="500px" height="250px" alt="">
